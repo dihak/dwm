@@ -144,7 +144,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_i,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_o,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle") },
+	{ MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle; pkill -RTMIN+11 dwmblocks") },
 	{ MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause ; pauseallmpv") },
 	{ MODKEY,			XK_bracketleft,		spawn,		SHCMD("mpc seek -10") },
 	{ MODKEY|ShiftMask,		XK_bracketleft,		spawn,		SHCMD("mpc seek -120") },
@@ -167,7 +167,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_h,		setmfact,	{.f = -0.05} },
 	/* J and K are automatically bound above in STACKEYS */
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
-	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
+	/* { MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } }, */
 	/* { MODKEY|ShiftMask,		XK_semicolon,	shiftview,	SHCMD("") }, */
 	/* { MODKEY,			XK_apostrophe,	spawn,		SHCMD("") }, */
 	/* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
@@ -188,10 +188,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("hover right") },
 	{ MODKEY,			XK_m,		spawn,		SHCMD("st -e ncmpcpp") },
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		{.v = voltoggle } },
-	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") },
-	{ MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%") },
-	{ MODKEY,			XK_period,	spawn,		SHCMD("mpc next") },
-	{ MODKEY|ShiftMask,		XK_period,	spawn,		SHCMD("mpc repeat") },
+	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev; pkill -RTMIN+11 dwmblocks") },
+	{ MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%; pkill -RTMIN+11 dwmblocks") },
+	{ MODKEY,			XK_period,	spawn,		SHCMD("mpc next; pkill -RTMIN+11 dwmblocks") },
+	{ MODKEY|ShiftMask,		XK_period,	spawn,		SHCMD("mpc repeat; pkill -RTMIN+11 dwmblocks") },
 
 	{ MODKEY,			XK_Page_Up,	shiftview,	{ .i = -1 } },
 	{ MODKEY,			XK_Page_Down,	shiftview,	{ .i = 1 } },
@@ -222,13 +222,13 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMute,		spawn,		{.v = voltoggle } },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,		{.v = volup } },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,		{.v = voldown } },
-	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
-	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
-	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause") },
-	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc play") },
-	{ 0, XF86XK_AudioStop,		spawn,		SHCMD("mpc stop") },
-	{ 0, XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
-	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
+	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc play; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioStop,		spawn,		SHCMD("mpc stop; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10; pkill -RTMIN+11 dwmblocks") },
+	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10; pkill -RTMIN+11 dwmblocks") },
 	{ 0, XF86XK_AudioMedia,		spawn,		SHCMD("st -e ncmpcpp") },
 	{ 0, XF86XK_PowerOff,		spawn,		SHCMD("[ \"$(printf \"No\\nYes\" | dmenu -i -nb darkred -sb red -sf white -nf gray -p \"Shutdown computer?\")\" = Yes ] && sudo -A shutdown -h now") },
 	{ 0, XF86XK_Calculator,		spawn,		SHCMD("st -e bc -l") },
@@ -249,10 +249,10 @@ static Key keys[] = {
 
 	/* { MODKEY,                       XK_space,  setlayout,      {0} }, */
 
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	// { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_semicolon, focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_semicolon,  tagmon,         {.i = -1 } },
+	// { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
 	/* { MODKEY|Mod4Mask,              XK_h,      incrgaps,       {.i = +1 } }, */
 	/* { MODKEY|Mod4Mask,              XK_l,      incrgaps,       {.i = -1 } }, */
