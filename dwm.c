@@ -1001,12 +1001,14 @@ focusmon(const Arg *arg)
 void
 focusstack(const Arg *arg)
 {
+	int isFull = 0;
 	int i = stackpos(arg);
 	Client *c, *p;
 
-	if (i < 0 || selmon->sel->isfullscreen)
+	if (i < 0)
 		return;
-
+	if (selmon->sel->isfullscreen)
+		setfullscreen(selmon->sel, 0);
 	for(p = NULL, c = selmon->clients; c && (i || !ISVISIBLE(c));
 	    i -= ISVISIBLE(c) ? 1 : 0, p = c, c = c->next);
 	focus(c ? c : p);
