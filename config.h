@@ -16,7 +16,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
+static const char *fonts[]          = { "monospace:size=10:antialias=true:autohint=true"  };
 static char dmenufont[]       = "monospace:size=10";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -92,6 +92,7 @@ static const char *voldown[] = { "pulsemixer", "--change-volume", "-5", NULL };
 static const char *bigvoldown[] = { "pulsemixer", "--change-volume", "-15", NULL };
 static const char *voltoggle[] = { "pulsemixer", "--toggle-mute", NULL };
 static const char *audiocontrol[] = { "st", "-e", "pulsemixer", NULL };
+static const char *mictoggle[] = { "amixer", "set", "Capture", "toggle", NULL };
 
 /* ALSA commands. Requires amixer in alsa-utils. */
 /* static const char *volup[] = { "amixer", "sset", "Master", "5%+", NULL }; */
@@ -250,6 +251,7 @@ static Key keys[] = {
 	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("synclient TouchpadOff=0") },
 	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
 	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15") },
+	{ 0, XF86XK_AudioMicMute,	spawn,		{.v = mictoggle} },
 
 	/* { MODKEY,                       XK_space,  setlayout,      {0} }, */
 
